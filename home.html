@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerold Portfolio Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Body and Layout Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #0e0a1f; /* Main background color */
+            color: #e0e0e0; /* Default text color */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        /* Styles for the Behance button (from previous update) */
+        .behance-button-container {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 80px;
+        }
+
+        .behance-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #a972ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .behance-button:hover {
+            background-color: #8f5be6;
+            transform: translateY(-2px);
+        }
+
+        .behance-button i {
+            margin-right: 10px;
+        }
+
+        /* Skills Section Styling (from previous update) */
+        .skills {
+            padding: 80px 20px;
+            background-color: #0e0a1f;
+            color: white;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .skill-item {
+            background: #1b1635;
+            padding: 1.5rem 1rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            background-color: #2a204f;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #a972ff;
+            border-radius: 50%;
+            margin: 0 auto 0.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .skill-item:hover .skill-icon {
+            background-color: #f59e0b;
+        }
+
+        .skill-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: white;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        /* Download link styling from previous update */
+        .work-item .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #a972ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .work-item .download-link:hover {
+            background-color: #8f5be6;
+        }
+
+        .work-item .download-link i {
+            margin-right: 5px;
+        }
+
+        /* Footer Specific Styles */
+        .footer {
+            background-color: #1b1635; /* Darker background for the footer */
+            padding: 60px 20px;
+            color: #e0e0e0;
+            text-align: center; /* Center content in footer */
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            align-items: center; /* Center items horizontally */
+            gap: 30px; /* Space between sections */
+        }
+
+        .footer-left,
+        .footer-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-heading {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-email {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #b0b0b0;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            color: #808080;
+            margin-top: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px; /* Space above social icons */
+        }
+
+        .social-icon {
+            color: #a972ff; /* Your purple color for icons */
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: #f59e0b; /* Orange on hover */
+        }
+
+        /* New styles for the "Developed By" section */
+        .developed-by-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Space between elements */
+            margin-top: 30px; /* Space above this section */
+            font-size: 1rem;
+            color: #e0e0e0; /* Light gray text */
+        }
+
+        .developed-by-section .angle-bracket {
+            color: #a972ff; /* Purple color for brackets */
+            font-size: 1.2rem; /* Slightly larger brackets */
+            font-weight: bold;
+        }
+
+        .developed-by-section .developer-name {
+            color: #a972ff; /* Orange color for the name */
+            font-weight: 600;
+        }
+
+        /* Responsive adjustments for footer */
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row; /* Layout horizontally on larger screens */
+                justify-content: space-between; /* Distribute space */
+                align-items: flex-start; /* Align items to the top */
+                text-align: left; /* Align text to the left */
+            }
+
+            .footer-left {
+                align-items: flex-start;
+            }
+
+            .footer-right {
+                align-items: flex-end; /* Align social icons to the right */
+            }
+
+            .developed-by-section {
+                justify-content: flex-start; /* Align to the left in footer-left */
+                margin-top: 10px; /* Adjust margin */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Mostafa Saleh</div>
+        <nav class="desktop-nav">
+            <a href="#services">Services</a>
+            <a href="#works">Works</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+        </nav>
+        <button class="hamburger-menu" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <nav class="mobile-nav">
+        <a href="#services">Services</a>
+        <a href="#works">Works</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#clients">Clients</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="text-lg text-purple-400 mb-2">I'm Mostafa Saleh</p>
+            <h1 class="text-5xl font-bold text-white leading-tight">Graphic Designer and marketing-driven visual
+                storyteller</h1>
+            <p class="text-gray-400 mt-4 max-w-lg">
+                a passionate Graphic Designer and marketing-driven visual storyteller with over five years of hands-on
+                experience in branding, digital campaigns, and design strategy. My work lies at the intersection of
+                creativity and business insight — transforming ideas into impactful visuals that connect brands with
+                their audiences.
+            </p>
+            <div class="stats mt-8 flex space-x-8">
+                <div>
+                    <h3 class="text-3xl font-bold text-white">5+</h3>
+                    <p class="text-gray-400">Years Experience</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-white">500+</h3>
+                    <p class="text-gray-400">Projects Completed</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="image/kreeza.jpg" alt="Gerold Profile" class="rounded-2xl shadow-lg">
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2 class="section-title text-center">My Quality Services</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <div class="service-icon"><i class="fas fa-palette"></i></div>
+                <h4 class="service-title">Brand Identity Design</h4>
+                <p class="service-description">I can design a comprehensive brand identity that truly represents your
+                    business, from logos to visual guidelines.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon"><i class="fas fa-eye"></i></div>
+                <h4 class="service-title">Design & Visual Communication</h4>
+                <p class="service-description">Crafting intuitive and engaging user experiences while ensuring clear and
+                    effective visual messaging.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                <h4 class="service-title">Digital Marketing & Growth Strategy</h4>
+                <p class="service-description">Developing effective digital marketing strategies to boost your online
+                    presence and drive business growth.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon"><i class="fas fa-share-alt"></i></div>
+                <h4 class="service-title">Social Media Campaigns</h4>
+                <p class="service-description">Creating compelling social media campaigns that engage your audience and
+                    expand your brand's reach.</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                <h4 class="service-title">Color Theory & Visual Storytelling</h4>
+                <p class="service-description">Leveraging the power of color and imagery to tell impactful stories that
+                    resonate with your target audience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="works" class="recent-works">
+        <h2 class="section-title text-center">My Recent Works</h2>
+        <div class="works-grid">
+            <div class="work-item">
+                <img src="image/ucaffe.png" alt="Work 1" class="rounded-lg">
+                <h4 class="work-title">U Caffe </h4>
+                <p class="work-category">Brand Guideline</p>
+                <a href="pdfs/UCaffee Brand Guideline.pdf" download="UCaffee Brand Guideline.pdf" class="download-link">
+                    <i class="fas fa-download"></i> Download Details
+                </a>
+            </div>
+            <div class="work-item">
+                <img src="image/tamkeen.png" alt="Work 2" class="rounded-lg">
+                <h4 class="work-title">Tamkeen Almusanadah Identity Guidelines 2025</h4>
+                <p class="work-category">Visual Identity Guideline</p>
+                <a href="pdfs/Tamkeen Almusanadah Identity Guidelines 2025 (updated).pdf" download="Tamkeen-Almusanadah-Identity-Guidelines-2025.pdf" class="download-link">
+                    <i class="fas fa-download"></i> Download Details
+                </a>
+            </div>
+        </div>
+        <div class="behance-button-container">
+            <a href="https://www.behance.net/mostafasaleh2/projects" target="_blank" class="behance-button">
+                <i class="fab fa-behance"></i> Show More on Behance
+            </a>
+        </div>
+    </section>
+
+    <section class="experience-education-container">
+        <section id="experience" class="experience">
+            <h2 class="section-title">My Experience</h2>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-date">2020 – Present</p>
+                        <h4 class="timeline-title">Freelance Graphic Designer</h4>
+                        <p class="timeline-description">Freelance.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-date">2023 – Present </p>
+                        <h4 class="timeline-title">Graphic Designer</h4>
+                        <p class="timeline-description">Plus X.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-date">2024 – Present</p>
+                        <h4 class="timeline-title">Visual Designer</h4>
+                        <p class="timeline-description">Deal Company.</p>
+                    </div>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </section>
+
+        <section id="education" class="education">
+            <h2 class="section-title">My Education</h2>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-date">2022 – Present </p>
+                        <h4 class="timeline-title">Bachelor of Business (FMI), Suez Canal University</h4>
+                        <p class="timeline-description">University of Suez Canal</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-date">2020 – 2022 </p>
+                        <h4 class="timeline-title">Ahmed Fawzy Emara SEC School</h4>
+                        <p class="timeline-description">SEC</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-date"></p>
+                        <h4 class="timeline-title">Graphic Design Specialization – CalArts</h4>
+                        <p class="timeline-description">Coursera</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-date"></p>
+                        <h4 class="timeline-title">Adobe Creative Cloud Masterclass –</h4>
+                        <p class="timeline-description">Udemy</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2 class="section-title text-center">My Skills</h2>
+        <div class="skill-grid">
+            <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-image"></i></div>
+                <p class="skill-name">Photoshop</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-pen-nib"></i></div>
+                <p class="skill-name">Illustrator</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-book"></i></div>
+                <p class="skill-name">InDesign</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon"><i class="fa-solid fa-photo-film"></i></div>
+                <p class="skill-name">XD</p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3 class="footer-heading">Let’s build something meaningful together.</h3>
+                <p class="footer-email">Email: salehmostafa145@gmail.com</p>
+                <p class="footer-copyright">&copy; 2025 Mostafa Saleh Portfolio</p>
+                <div class="developed-by-section">
+                    <span class="angle-bracket">&lt;</span>  Developed By <span class="developer-name"><a href="https://www.linkedin.com/in/saalehmohamedd">Saleh Mohamed</a></span> <span class="angle-bracket">&gt;</span>
+                </div>
+                <!-- Removed the old "developed by" paragraph -->
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/melvin.krus.35" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/krezaa_/" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.behance.net/mostafasaleh2/projects" class="social-icon"><i class="fa-brands fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- New "Developed By" section at the bottom of the footer -->
+
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevent default jump behavior
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth' // Smooth scroll animation
+                        });
+                    }
+
+                    // Close mobile menu if open
+                    const mobileNav = document.querySelector('.mobile-nav');
+                    if (mobileNav.classList.contains('active')) {
+                        mobileNav.classList.remove('active');
+                        document.querySelector('.hamburger-menu i').classList.remove('fa-times');
+                        document.querySelector('.hamburger-menu i').classList.add('fa-bars');
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+
+            hamburgerMenu.addEventListener('click', function () {
+                mobileNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (mobileNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times'); // Change to 'X' icon
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars'); // Change back to hamburger icon
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
